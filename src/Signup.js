@@ -38,16 +38,37 @@ function Signup() {
   const [passwordReg, setPasswordReg] = useState ("");
   const navigate = useNavigate();
   
-  const register = () => {
-      Axios.post("http://localhost:8081/register", {
-        username: usernameReg,
-        password: passwordReg,
-       }).then((response) => {
-          console.log(response.data);
-          navigate(Home)
-       });
-     };
+  // const register = () => {
+  //     Axios.post("http://localhost:8081/register", {
+  //       username: usernameReg,
+  //       password: passwordReg,
+  //      }).then((response) => {
+  //         console.log("rajkumar");
+  //         console.log(response);
+  //         navigate('/Home')
+  //      });
+  //    };
 
+  const register = () => {
+    // Send a POST request to the server with the provided username and password
+    Axios.post("http://localhost:8081/register", {
+      username: usernameReg,
+      password: passwordReg,
+    })
+      .then((response) => {
+        // Log a message and the response from the server
+        console.log("Registration successful.");
+        console.log("Server response:", response);
+  
+        // Navigate to the '/Home' route after successful registration
+        navigate('/Home');
+      })
+      .catch((error) => {
+        // Log an error if the registration request fails
+        console.error("Registration failed:", error);
+      });
+  };
+  
   return (
     <ThemeProvider theme={defaultTheme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
@@ -76,7 +97,7 @@ function Signup() {
               alignItems: 'center',
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
