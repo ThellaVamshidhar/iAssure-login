@@ -14,7 +14,8 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import background from "./assets/Blank.png";
+import background from "./assets/Audit_img.jpg";
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 const defaultTheme = createTheme();
@@ -36,6 +37,7 @@ const LogIn = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const { loginWithRedirect } = useAuth0();
 
   const login = () => {
     Axios.post('http://localhost:8081/login', {
@@ -128,6 +130,7 @@ const LogIn = () => {
               >
                 Log In
               </Button>
+              <button onClick={() => loginWithRedirect()}>Log In</button>;
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">

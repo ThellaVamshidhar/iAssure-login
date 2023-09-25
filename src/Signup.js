@@ -12,7 +12,7 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import background from "./assets/Blank.png";
+import background from "./assets/Audit_img.jpg";
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Home from './Home';
