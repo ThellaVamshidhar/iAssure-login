@@ -16,8 +16,11 @@ import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import background from "./assets/Audit_img.jpg";
 import { useAuth0 } from "@auth0/auth0-react";
+import { GoogleLogin } from 'react-google-login';
+import {gapi} from "gapi-script";
+import {useEffect} from "react";
 
-
+const clientId = "1095091147869-5regbtd2ok8dla6ciru14cd2gr412v85.apps.googleusercontent.com";
 const defaultTheme = createTheme();
 
 function Copyright(props) {
@@ -38,6 +41,23 @@ const LogIn = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const { loginWithRedirect } = useAuth0();
+
+  useEffect(() => {
+    function start(){
+      gapi.client.init({
+        clientId: clientId,
+        scope: ""
+      })
+    }
+    gapi.load('client:auth2', start)
+   })
+
+  const onSuccess = (res) => {
+    navigate('/Home');
+  }
+  const onFailure = (res) => {
+    navigate('/')
+  }
 
   const login = () => {
     Axios.post('http://localhost:8081/login', {
@@ -130,7 +150,15 @@ const LogIn = () => {
               >
                 Log In
               </Button>
-              <button onClick={() => loginWithRedirect()}>Log In</button>;
+              <button onClick={() => loginWithRedirect()}>Log In</button>
+              <div id='sigInButton'>
+                <GoogleLogin
+                  clientId={clientId}
+                  onSuccess={onSuccess}
+                  onFailure={onFailure}
+                  isSignedIn={true}
+                />
+              </div>
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">

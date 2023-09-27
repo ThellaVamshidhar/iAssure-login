@@ -1,0 +1,40 @@
+.body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+nav {
+    background-color: #191e24f5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+    padding: 5px 50px;
+    box-shadow: 10px 10px 10px rgba(128, 128, 128, 0.548);
+    color: white;
+    
+}
+nav ul{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    
+}
+li {
+    width: 70px;
+  }
+li a {
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 15px 15px;
+    transition: 0.5s;
+    color: white;
+    text-decoration: none;
+  }
+li a:hover {
+    color: #f1c40f;
+    border-bottom: 4px #f1c40f solid;
+    transition: 0.5s;
+  }
