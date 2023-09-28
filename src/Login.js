@@ -19,6 +19,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { GoogleLogin } from 'react-google-login';
 import {gapi} from "gapi-script";
 import {useEffect} from "react";
+import FacebookLogin from 'react-facebook-login';
 
 const clientId = "1095091147869-5regbtd2ok8dla6ciru14cd2gr412v85.apps.googleusercontent.com";
 const defaultTheme = createTheme();
@@ -41,6 +42,13 @@ const LogIn = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const { loginWithRedirect } = useAuth0();
+
+  const responseFacebook = (response) => {
+    
+    console.log(response);
+
+    navigate('/home');
+  };
 
   useEffect(() => {
     function start(){
@@ -159,6 +167,12 @@ const LogIn = () => {
                   isSignedIn={true}
                 />
               </div>
+              <FacebookLogin
+                appId="3573196536288817"
+                autoLoad={false}
+                fields="name,email,picture"
+                callback={responseFacebook}
+              />
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
